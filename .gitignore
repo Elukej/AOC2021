@@ -1,3 +1,6 @@
 # Ignore the binary files
 day*/first
 day*/second
+
+# Ignore vscode
+.vscode/
