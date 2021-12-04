@@ -98,7 +98,7 @@ int main()
         if (container.duzina == 1 && lcom_container.duzina == 1) break;
     }
     std::cout << container.lista.front() << "  " << lcom_container.lista.front() << std::endl;
-    int oxygen = stoi(container.lista.front(), 0 , 2);
-    int co2 = stoi(lcom_container.lista.front(), 0 , 2);
+    int oxygen = std::stoi(container.lista.front(), 0 , 2);
+    int co2 = std::stoi(lcom_container.lista.front(), 0 , 2);
     std::cout << oxygen * co2 << std::endl;            
 }

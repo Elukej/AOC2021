@@ -4,3 +4,7 @@ day*/second
 
 # Ignore vscode
 .vscode/
+
+# Ignore some trys
+day3/try
+day3/try.cpp
