@@ -17,11 +17,11 @@ struct Position {
         void addAim(int num) { this->aim += num; }
 };
 
-int main()
+int main(int argc, char** argv)
 {
     std::cout << "Program pokrece podmornicu po dve ose.\
  i izracunava proizvod krajnje pozicije po x i y" << std::endl;
-    std::ifstream input("input.txt");
+    std::ifstream input(argv[1]);
     std::string dir, num;
     Position submarine;
 

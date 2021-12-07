@@ -5,6 +5,7 @@
 #include <sstream>
 #include <unordered_map>
 #include <math.h>
+#include "../include/luka_string.h"
 
 struct BoardField {
     int row;
@@ -22,24 +23,6 @@ struct RowColTracker {
     RowColTracker(){}
     RowColTracker(size_t x): row(x,0), col(x,0) {}
 };
-
-const std::string WHITESPACE = " \n\r\t\f\v";
- 
-void ltrim(std::string &s)
-{
-    size_t start = s.find_first_not_of(WHITESPACE);
-    s.erase(0, start);
-}
- 
-void rtrim(std::string &s)
-{
-    size_t end = s.find_last_not_of(WHITESPACE);
-    s.erase(end);
-}
- 
-void trim(std::string &s) {
-    rtrim(s); ltrim(s);
-}
 
 std::vector<int> parse_nums(std::string str, std::string delim)
 {
@@ -72,18 +55,13 @@ void parse_Board(std::ifstream& input,
     vec.push_back(temp_board);
 }
 
-int main()
+int main(int argc, char** argv)
 {
     std::cout << "Bingo game with a squid!" << std::endl;
-    std::ifstream input("input.txt");
+    std::ifstream input(argv[1]);
     std::string line;
     std::getline(input, line);
     std::vector<int> nums = parse_nums(line, ",");
-
-    for (int i = 0; i < nums.size(); i++) {
-        std::cout << nums[i] << " ";
-    }
-    std::cout << std::endl;
 
     std::vector<std::unordered_map<int, BoardField>> board_list;
     while (!input.eof()) parse_Board(input, board_list);
@@ -109,5 +87,5 @@ int main()
         if (!board.second.visited) sum += board.first;
     std::cout << nums[i] << std::endl << j <<std::endl;
     std::cout << sum * nums[i] << std::endl;
-    
+
 }

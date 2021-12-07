@@ -2,14 +2,14 @@
 #include <fstream>
 #include <string>
 
-int main()
+int main(int argc, char** argv)
 {
     std::cout << "Program broji koliko puta u nizu je vrednost\
  skocila od prethodne, ali u trojkama." << std::endl;
     std::ifstream input;
     int count_inc = 0;
     int t[4] = {0}, sum1 = 0, sum2 = 0;
-    input.open("input.txt");
+    input.open(argv[1]);
     std::string line1;
 
     for(int i = 0; i<3; i++) {

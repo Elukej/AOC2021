@@ -81,11 +81,11 @@ void rating(char gas_type, const int& index,
             }
 }
 
-int main()
+int main(int argc, char** argv)
 {
     std::cout << "Program trazi proivod brojeva dobijenih\
  od najcescih cifara i najredjih cifara iz liste" << std::endl;
-    std::ifstream input("input.txt");
+    std::ifstream input(argv[1]);
     int total = 0;
     Data_struct container(parse(input, total), 0), lcom_container;
     container.duzina = total;

@@ -1,14 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-int main()
+// Program se poziva sa imenom input fajla
+int main(int argc, char** argv)
 {
     std::cout << "Program broji koliko puta u nizu je vrednost\
  skocila od prethodne." << std::endl;
     std::ifstream input;
     int count_inc = 0;
-    input.open("input.txt");
+    input.open(argv[1]);
+
+    if(!input) {
+        std::cout << "Neuspesno otvaranje fajla!" << std::endl;
+        return EXIT_FAILURE;
+    }
     std::string line1, line2;
     std::getline(input, line1);
     for ( ;std::getline(input, line2); ) {

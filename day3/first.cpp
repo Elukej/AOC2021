@@ -3,11 +3,11 @@
 #include <string>
 #include <vector>
 
-int main()
+int main(int argc, char** argv)
 {
     std::cout << "Program trazi proivod brojeva dobijenih\
  od najcescih cifara i najredjih cifara iz liste" << std::endl;
-    std::ifstream input("input.txt");
+    std::ifstream input(argv[1]);
     std::string line;
     std::vector<int> vec;
     int total = 0;

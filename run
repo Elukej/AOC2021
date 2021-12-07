@@ -1,0 +1,9 @@
+#!/bin/bash
+# script receives name of folder with bin files (day1 for example) as argument
+dir=$(printf "%s" $0 | sed -nr 's/([^\/]+)$//;p')
+var_ex=`echo "$dir$1"`
+#echo $var_ex
+var=$(echo $var_ex | sed -nr 's/^.\///;p')
+#echo $var
+time $var_ex/first $var/input.txt
+time $var_ex/second $var/input.txt
