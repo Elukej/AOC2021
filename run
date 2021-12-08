@@ -8,7 +8,7 @@ if [ -z $1 ]
 then
 	for i in {1..25} 
 	do
-		if [ -d day$i ]
+		if [ -d $dir/day$i ]
 		then
 			day=`echo "day$i"`
 			echo -e "\n\033[1;32mDay$i first: \033[0;0m"
