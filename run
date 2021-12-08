@@ -18,8 +18,8 @@ then
 		fi
 	done
 else
-	echo -e "\n\033[1;32mDay$i first: \033[0;0m"
+	echo -e "\n\033[1;32m$1 first: \033[0;0m"
 	time $var_ex/first $var/input.txt
-	echo -e "\n\033[1;32mDay$i second: \033[0;0m"
+	echo -e "\n\033[1;32m$1 second: \033[0;0m"
 	time $var_ex/second $var/input.txt
 fi
