@@ -53,7 +53,7 @@ int main(int argc, char** argv)
     }
     
     for ( ; std::getline(input, line); )
-        vec.push_back(DangerLine(num_parser(line)));
+        vec.push_back(DangerLine(luka_string::num_parser(line)));
 
 
     std::unordered_map<Point, int, HashFunctionType> ground_map;

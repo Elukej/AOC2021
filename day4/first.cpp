@@ -30,7 +30,7 @@ std::vector<int> parse_nums(std::string str, std::string delim)
     while (( pos = str.find(delim)) != std::string::npos) {
         vec.push_back(std::stoi(str.substr(0,pos)));
         str.erase(0, pos + delim.length());
-        ltrim(str);
+        luka_string::ltrim(str);
     }
     vec.push_back(std::stoi(str));
 
@@ -45,7 +45,7 @@ void parse_Board(std::ifstream& input,
     std::unordered_map<int, BoardField> temp_board;
     while (( input.peek() != '\n') && !input.eof()) {
         std::getline(input, line);
-        ltrim(line);
+        luka_string::ltrim(line);
         std::vector<int> temp_vec(parse_nums(line, " "));
         col = 0; 
         for (int broj : temp_vec)

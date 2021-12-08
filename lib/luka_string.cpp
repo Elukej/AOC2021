@@ -1,23 +1,23 @@
 #include "luka_string.h"
 
  
-std::string& ltrim(std::string &s)
+std::string& luka_string::ltrim(std::string &s)
 {
     size_t start = s.find_first_not_of(WHITESPACE);
     return s.erase(0, start);
 }
  
-std::string& rtrim(std::string &s)
+std::string& luka_string::rtrim(std::string &s)
 {
     size_t end = s.find_last_not_of(WHITESPACE);
     return s.erase(end + 1);
 }
  
-std::string& trim(std::string &s) {
+std::string& luka_string::trim(std::string &s) {
    return rtrim(ltrim(s));
 }
 
-std::vector<std::string> split(std::string str, std::string delim)
+std::vector<std::string> luka_string::split(std::string str, std::string delim)
 {
     std::vector<std::string> vec;  size_t pos; 
     while (( pos = str.find(delim)) != std::string::npos) {
@@ -30,7 +30,7 @@ std::vector<std::string> split(std::string str, std::string delim)
     return vec;
 }
 
-std::vector<int> num_parser(std::string &str)
+std::vector<int> luka_string::num_parser(std::string &str)
 {
     std::vector<int> vec;
     auto pos = str.begin(); bool num_ind = false;
