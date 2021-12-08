@@ -1,6 +1,7 @@
 # Ignore the binary files
 day*/first
 day*/second
+lib/luka_string.o
 
 # Ignore vscode
 .vscode/

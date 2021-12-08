@@ -1,6 +1,5 @@
 #!/bin/bash
 # script receives name of folder with bin files (day1 for example) as argument
-# if its called without arguments, it executes everything
 dir=$(printf "%s" $0 | sed -nr 's/([^\/]+)$//;p')
 var_ex=`echo "$dir$1"`
 var=$(echo $var_ex | sed -nr 's/^.\///;p')
@@ -11,15 +10,11 @@ then
 		if [ -d day$i ]
 		then
 			day=`echo "day$i"`
-			echo -e "\n\033[1;32mDay$i first: \033[0;0m"
 			time $var_ex$day/first $var$day/input.txt
-			echo -e "\n\033[1;32mDay$i second: \033[0;0m"
 			time $var_ex$day/second $var$day/input.txt
 		fi
 	done
 else
-	echo -e "\n\033[1;32mDay$i first: \033[0;0m"
 	time $var_ex/first $var/input.txt
-	echo -e "\n\033[1;32mDay$i second: \033[0;0m"
 	time $var_ex/second $var/input.txt
 fi
