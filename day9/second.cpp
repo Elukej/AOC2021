@@ -41,6 +41,7 @@ void insert_basin(int size, int arr[])
         std::sort(arr, arr + 3);
     }
 }
+
 int main(int argc, char** argv)
 {
     std::cout << "Lava caves!" << std::endl;
@@ -49,6 +50,7 @@ int main(int argc, char** argv)
         std::cout << "Error opening the file!" << std::endl;
         return EXIT_FAILURE;
     }
+    
     // parsing with padding
     std::vector<std::vector<int>> lava_field;
     std::string line;
