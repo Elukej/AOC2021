@@ -1,8 +1,8 @@
 #include <fstream>
 #include <unordered_map>
 #include <forward_list>
+#include <stack>
 #include "../include/luka_string.h"
-
 
 struct Node {
     int counter;
@@ -16,7 +16,7 @@ int countPaths(const std::string &s1, bool has2lower,
 {
     int count = 0;
     bool in_graph = (graph.find(s1) != graph.end());
-    if (in_graph) {
+    if (in_graph && (s1 != "end")) {
         graph[s1].counter++;
         for (auto &mem : graph[s1].next) {
             if (isupper(mem[0]) || graph[mem].counter == 0) 
