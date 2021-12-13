@@ -7,6 +7,5 @@ lib/luka_string.o
 .vscode/
 
 # Ignore some trys
-day*/try
-day*/try.cpp
+day*/try*
 

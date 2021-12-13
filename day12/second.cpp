@@ -6,28 +6,27 @@
 
 struct Node {
     int counter;
-    std::forward_list<std::string> next;
+    std::vector<std::string> next;
     Node(int counter = 0):counter(counter){}
     //list of hashmap iterators for the graph
 };
 
 int countPaths(const std::string &s1, bool has2lower,
-               std::unordered_map<std::string, Node> graph)
+               std::unordered_map<std::string, Node> &graph)
 {
     int count = 0;
-    bool in_graph = (graph.find(s1) != graph.end());
-    if (in_graph && (s1 != "end")) {
+
+    if (s1 != "end") {
         graph[s1].counter++;
         for (auto &mem : graph[s1].next) {
             if (isupper(mem[0]) || graph[mem].counter == 0) 
                 count += countPaths(mem, has2lower, graph);
-            if (islower(mem[0]) && graph[mem].counter == 1 && !has2lower
-                && (mem != "start") && (mem != "end"))
+            else if (!has2lower && (mem != "start"))
                 count += countPaths(mem, true, graph);
         }
         graph[s1].counter--;
     }
-    if (s1 == "end") count++;
+    else return 1;
     return count;
 }
 
@@ -39,10 +38,10 @@ std::unordered_map<std::string, Node> createGraph(std::ifstream &input)
         std::vector<std::string> temp = luka_string::split(line,"-");
         if (cave_network.find(temp[0]) == cave_network.end())
             cave_network[temp[0]] = Node(); 
-        cave_network[temp[0]].next.push_front(temp[1]);
+        cave_network[temp[0]].next.push_back(temp[1]);
         if (cave_network.find(temp[1]) == cave_network.end())
             cave_network[temp[1]] = Node(); 
-        cave_network[temp[1]].next.push_front(temp[0]);
+        cave_network[temp[1]].next.push_back(temp[0]);
     }
     return cave_network;
 }

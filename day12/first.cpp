@@ -11,18 +11,17 @@ struct Node {
     //list of hashmap iterators for the graph
 };
 
-int countPaths(const std::string &s1, std::unordered_map<std::string, Node> graph)
+int countPaths(const std::string &s1, std::unordered_map<std::string, Node> &graph)
 {
     int count = 0;
-    bool in_graph = (graph.find(s1) != graph.end());
-    if (in_graph && (s1 != "end")) {
+    if (s1 != "end") {
         graph[s1].counter++;
         for (auto &mem : graph[s1].next)
             if (isupper(mem[0]) || graph[mem].counter == 0) 
                 count += countPaths(mem, graph);
         graph[s1].counter--;
     }
-    if (s1 == "end") count++;
+    else return 1;
     return count;
 }
 
