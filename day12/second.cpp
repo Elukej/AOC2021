@@ -11,6 +11,50 @@ struct Node {
     //list of hashmap iterators for the graph
 };
 
+struct StackFrame {
+    std::string cave;
+    int index;
+    bool has2lower;
+    StackFrame(std::string s, int i, bool t):cave(s), 
+    index(i), has2lower(t) {}
+};
+
+int countPathsIterative( std::unordered_map<std::string, Node> &graph)
+{
+    int count = 0;
+    std::string cave("start");
+    int index = 0;
+    bool has2lower = false;
+    std::stack<StackFrame> stack;
+
+    while ( !stack.empty() || (index < graph[cave].next.size()) ) {
+        if (index == graph[cave].next.size()) {
+            cave = stack.top().cave;
+            index = stack.top().index;
+            has2lower = stack.top().has2lower;
+            stack.pop();
+            graph[cave].counter--; index++;
+            continue;
+        }
+        if (graph[cave].next[index] == "end") {
+            count++; index++; continue;
+        } 
+        std::string &temp = graph[cave].next[index];
+        if (islower(temp[0]) && has2lower && 
+                (graph[temp].counter > 0) || temp == "start") { 
+                index++; continue;
+        }
+        stack.push(StackFrame(cave, index, has2lower));
+        graph[cave].counter++; 
+        cave = temp;
+        index = 0;  
+        if ( islower(temp[0]) && graph[temp].counter == 1 
+            && !has2lower)
+                has2lower = true;              
+    }
+    return count;
+}
+
 int countPaths(const std::string &s1, bool has2lower,
                std::unordered_map<std::string, Node> &graph)
 {
@@ -59,4 +103,3 @@ int main(int argc, char** argv)
     int total_paths = countPaths("start", false, cave_network);
     std::cout << "Total path number: " << total_paths << std::endl;
 }
-//Nije 143283
