@@ -9,3 +9,5 @@ lib/luka_string.o
 # Ignore some trys
 day*/try*
 
+# Ignore robin_hood
+include/robin_hood.h
