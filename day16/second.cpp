@@ -13,7 +13,11 @@ struct Packet {
     long literal;
     int pack_len;
     std::vector<Packet> sub_packs;
-    Packet(){}
+    Packet(){
+        version = (pack_len = 0);
+        type_ID = (length_type_ID = (num_packets = 
+                  (bit_length = (literal = -1))));
+    }
     Packet(int v, int t, char l, int n=-1, int b = -1, 
            long lit = -1, int pl = 0):
             version(v), type_ID(t), length_type_ID(l),
@@ -73,7 +77,6 @@ Packet packetParser(std::string &bits, int &pos, int &ver_sum)
     
     long literal = -1;
     if (length_type_ID == -1) { //is a literal
-        bit_length = (num_packets = -1);
         std::string temp;
         bool cond = false;
         while (!cond) {
@@ -85,7 +88,6 @@ Packet packetParser(std::string &bits, int &pos, int &ver_sum)
     }
     
     if (length_type_ID == 1) {
-        bit_length = -1;
         num_packets = std::stoi(bits.substr(pos, 11), nullptr, 2);   
         pos += 11; pack_len += 12; //because of length_type id, which wasnt accounted in pack_len
         int temp = num_packets;
@@ -94,7 +96,6 @@ Packet packetParser(std::string &bits, int &pos, int &ver_sum)
     }   
 
     if (length_type_ID == 0) {
-        num_packets = -1;
         bit_length = std::stoi(bits.substr(pos, 15), nullptr, 2);
         pos += 15; pack_len += 16;//because of length_type id, which wasnt accounted in pack_len
         int temp = bit_length, old_pos;
@@ -103,9 +104,9 @@ Packet packetParser(std::string &bits, int &pos, int &ver_sum)
             packet.sub_packs.push_back(packetParser(bits, pos, ver_sum));
         } while (temp -= (pos - old_pos)); // length of subpack is reflected by old and new positions in string
     }
-    packet.set(version, type_ID, length_type_ID, num_packets, bit_length,
+    
+    return packet.set(version, type_ID, length_type_ID, num_packets, bit_length,
                literal, pack_len);
-    return packet;
 }
 
 long packetValue(Packet packet)
@@ -164,4 +165,4 @@ int main(int argc, char** argv)
     Packet bit_packet = packetParser(bits_string, pos, ver_sum);
     std::cout << "Main packet value: " << packetValue(bit_packet) << std::endl;
 
-} //Nije 1264857430921
+} 
