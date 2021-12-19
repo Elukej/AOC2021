@@ -158,4 +158,3 @@ int main(int argc, char** argv)
 
     std::cout << "Number of shots: " << vel.size() << std::endl;
 }
-//Nije 2064
