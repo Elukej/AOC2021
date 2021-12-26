@@ -35,7 +35,7 @@ std::vector<int> luka_string::num_parser(std::string &str)
     std::vector<int> vec;
     auto pos = str.begin(); bool num_ind = false;
     for (auto it1 = str.begin(), it2 = str.begin(); it1 != str.end(); it1++) {
-        if (isdigit(*it1)) {
+        if (isdigit(*it1) || ((*it1) == '-' && isdigit(*(it1 +1)))) {
             if (!num_ind) { 
                 it2 = it1; 
                 num_ind = true;
