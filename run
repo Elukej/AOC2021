@@ -8,9 +8,19 @@ if [ -z $1 ]
 then
 	for i in {1..25} 
 	do
+		day=`echo "day$i"`
+		if [ $i -eq 23 ] 
+		then
+			echo -e "\n\033[1;32mDay$i first: \033[0;0m"
+			cat $var_ex$day/first.txt
+			echo ""
+			echo -e "\n\033[1;32mDay$i second: \033[0;0m"
+			cat $var_ex$day/second.txt
+			echo ""
+			continue
+		fi
 		if [ -d $dir/day$i ]
 		then
-			day=`echo "day$i"`
 			echo -e "\n\033[1;32mDay$i first: \033[0;0m"
 			time $var_ex$day/first $var$day/input.txt
 			echo -e "\n\033[1;32mDay$i second: \033[0;0m"
@@ -18,8 +28,18 @@ then
 		fi
 	done
 else
-	echo -e "\n\033[1;32m$1 first: \033[0;0m"
-	time $var_ex/first $var/input.txt
-	echo -e "\n\033[1;32m$1 second: \033[0;0m"
-	time $var_ex/second $var/input.txt
+	if [ $1 = day23 ]
+	then
+		echo -e "\n\033[1;32m$1 first: \033[0;0m"
+		cat $var_ex$day/first.txt
+		echo ""
+		echo -e "\n\033[1;32m$1 second: \033[0;0m"
+		cat $var_ex$day/second.txt
+		echo ""
+	else
+		echo -e "\n\033[1;32m$1 first: \033[0;0m"
+		time $var_ex/first $var/input.txt
+		echo -e "\n\033[1;32m$1 second: \033[0;0m"
+		time $var_ex/second $var/input.txt
+	fi
 fi
