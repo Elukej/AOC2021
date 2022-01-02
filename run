@@ -19,6 +19,16 @@ then
 			echo ""
 			continue
 		fi
+		if [ $i -eq 24 ] 
+		then
+			echo -e "\n\033[1;32mDay$i first: \033[0;0m"
+			cat $var_ex$day/first.txt
+			echo ""
+			echo -e "\n\033[1;32mDay$i second: \033[0;0m"
+			cat $var_ex$day/second.txt
+			echo ""
+			continue
+		fi
 		if [ -d $dir/day$i ]
 		then
 			echo -e "\n\033[1;32mDay$i first: \033[0;0m"
@@ -36,6 +46,14 @@ else
 		echo -e "\n\033[1;32m$1 second: \033[0;0m"
 		cat $var_ex$day/second.txt
 		echo ""
+	elif [ $1 = day24 ]
+	then
+		echo -e "\n\033[1;32m$1 first: \033[0;0m"
+		cat $var_ex$day/first.txt
+		echo ""
+		echo -e "\n\033[1;32m$1 second: \033[0;0m"
+		cat $var_ex$day/second.txt
+		echo ""		
 	else
 		echo -e "\n\033[1;32m$1 first: \033[0;0m"
 		time $var_ex/first $var/input.txt
